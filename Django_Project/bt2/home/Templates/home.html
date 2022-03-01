@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include  'common/head.html' %}
+
+    <title>Trang chủ</title>
+
+</head>
+<body>
+    <h3>LÀM BÀI TẬP 2 MÔN PHÁT TRIỂN HỆ THỐNG THƯƠNG MẠI ĐIỆN TỬ</h3>
+    <br/>
+
+    <h3 class="text-center">CÔNG TY TNHH 1 THÀNH VIÊN VDD</h3>
+    <table class="table table-bordered mt60">
+        <thead class="bg-darkgray text-bold td">
+            <tr>
+                <th>MÃ</th>
+                <th>DANH MỤC</th>
+                <th>CHỨC NĂNG</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for catalog in catalog_list%}
+            <tr>
+                <td>{{catalog.catalog_id}}</td>
+                <td>{{catalog.name}}</td>
+                <td><a href="catalog/{{catalog.catalog_id}}">CHI TIẾT</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

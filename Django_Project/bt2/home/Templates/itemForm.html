@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include 'common/head.html' %}
+
+        <title>Thêm sản phẩm</title>
+    </head>
+    <body>
+        <h3 style="margin-left: 50px">THÊM SẢN PHẨM</h3>
+        <form
+            class="form-contact"
+            action="/addItem"
+            method="post"
+            enctype="multipart/form-data"
+            style="margin-left: 50px; margin-top: 60px"
+        >
+            {% csrf_token %}
+
+            <label for="catalog" style="width: 150px">LOẠI SẢN PHẨM</label>
+            <select name="catalog" id="catalog">
+                <option value="">---Chọn loại---</option>
+                {% for catalog in catalog_list %}
+                <option value="{{catalog.catalog_id}}">   
+                    {{catalog.name}}
+                </option>
+                {% endfor %}
+            </select>
+            <br />
+
+            <label for="fullName" style="width: 150px">TÊN SẢN PHẨM</label>
+            <input type="text" name="fullName" />
+            <br />
+
+            <label for="company" style="width: 150px">TÁC GIẢ / NSX</label>
+            <input type="text" name="company" />
+            <br />
+
+            <label for="avatar" style="width: 150px">ẢNH ĐẠI DIỆN</label>
+            <input type="file" name="avatar" />
+            <br />
+
+            <label for="price" style="width: 150px">GIÁ BÁN</label>
+            <input type="text" name="price" />
+            <br />
+
+            <button
+                class="btn btn-primary"
+                type="submit"
+                style="margin-top: 20px"
+            >
+                LƯU
+            </button>
+        </form>
+    </body>
+</html>

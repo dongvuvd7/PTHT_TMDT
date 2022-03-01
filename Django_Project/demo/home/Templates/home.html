@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    {% include  'common/head.html' %}
+    
+    <title>Trang chu</title>
+    
+</head>
+<body>
+    <h3>Hello Django</h3>
+    <h4>My name is Vũ Đức Đông</h4>
+    <h5>Cùng nhau cố gắng qua môn học này nhé</h5>
+
+    <br/>
+
+    <h3 class="text-center">CONG TY TNHH 1 THANH VIEN</h3>
+    <table class="table table-bordered mt60">
+        <thead class="bg-darkgray text-bold td">
+            <tr>
+                <th>ID</th>
+                <th>TEN PHONG BAN</th>
+                <th>CHUC NANG</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for department in department_list%}
+            <tr>
+                <td>{{department.department_id}}</td>
+                <td>{{department.name}}</td>
+                <td><a href="department/{{department.department_id}}">Chi tiet</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

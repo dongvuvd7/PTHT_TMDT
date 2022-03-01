@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include  'common/head.html' %}
+
+    <title>Dánh sách {{catalog.name}}</title>
+</head>
+<body>
+    <h3>ITEMS</h3>
+
+    <br/>
+
+    <h3 class="text-center">Danh sách các sản phẩm {{catalog.name}}</h3>
+    <table class="table table-bordered mt60">
+        <thead class="bg-darkgray text-bold td">
+            <tr>
+                <th>Mã</th>
+                <th>TÊN SẢN PHẨM</th>
+                <th>TÁC GIẢ / NSX </th>
+                <th>ẢNH</th>
+                <th>GIÁ BÁN</th>
+                <th>CHỨC NĂNG</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in item_list%}
+            <tr>
+                <td>{{item.item_id}}</td>
+                <td style="font-weight: bold; text-align: center;">{{item.name}}</td>
+                <td>{{item.company}}</td>
+                <td><img src="/home/media/{{item.avatar}}" alt="" class="img" style="width: 80px; height: 80px;"></td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button type="button" class="btn btn-info">Sửa</button>
+                    <button type="button" class="btn btn-warning">Xóa</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/addItemForm" style="margin-left: 30px;"><button type="button" class="btn btn-primary">Thêm mới</button></a>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include 'common/head.html' %}
+
+        <title>Them nhan vien</title>
+    </head>
+    <body>
+        <h3 style="margin-left: 50px">THEM NHAN VIEN</h3>
+        <form
+            class="form-contact"
+            action="/addEmployee"
+            method="post"
+            enctype="multipart/form-data"
+            style="margin-left: 50px; margin-top: 60px"
+        >
+            {% csrf_token %}
+
+            <label for="department" style="width: 150px">Phong ban</label>
+            <select name="department" id="department">
+                <option value="">---Chon phong ban---</option>
+                {% for department in department_list %}
+                <option value="{{department.department_id}}">
+                    {{department.name}}
+                </option>
+                {% endfor %}
+            </select>
+            <br />
+
+            <label for="fullName" style="width: 150px">Ten nhan vien</label>
+            <input type="text" name="fullName" />
+            <br />
+
+            <label for="age" style="width: 150px">Tuoi</label>
+            <input type="number" name="age" />
+            <br />
+
+            <label for="avatar" style="width: 150px">Anh dai dien</label>
+            <input type="file" name="avatar" />
+            <br />
+
+            <label for="cv" style="width: 150px">CV</label>
+            <input type="file" name="cv" />
+            <br />
+
+            <button
+                class="btn btn-primary"
+                type="submit"
+                style="margin-top: 20px"
+            >
+                Them moi
+            </button>
+        </form>
+    </body>
+</html>
