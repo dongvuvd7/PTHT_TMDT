@@ -25,5 +25,9 @@ urlpatterns = [
     path('', home.get_home), #url mac dinh vao thang trang home.html
     path('catalog/<int:id>/', items.get_items),
     path('addItemForm/', items.get_item_form),
-    path('addItem', items.add_item)
+    path('addItem', items.add_item),
+    path('editItemForm/<int:id>/', items.get_item_form_edit),
+    path('editItem/<int:id>', items.edit_item),
+    path('deleteItem/<int:id>', items.delete_item),
+
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

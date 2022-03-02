@@ -7,7 +7,7 @@ from home.models import catalog as catalog_model
 def get_items(request, id):
     item_list = item_model.objects.filter(catalog_id = id)
     #Lay danh muc theo ma danh muc
-    catalog = catalog_model.objects.get(catalog_id = id);
+    catalog = catalog_model.objects.get(catalog_id = id)
     return render(request, 'items.html', {
         'item_list' : item_list,
         'catalog' : catalog,
@@ -41,7 +41,49 @@ def add_item(request):
             price = price,
         )
         item.save()
-        #Dieu huong lai trang xem ds nhan vien
+        #Dieu huong lai trang xem ds san pham
         return redirect('/catalog/' + str(catalog_id)) #Do catalog_id la int nen de noi chuoi thi can chuyen ve str
     else:
         return render(request, 'error.html')
+
+
+#Hien thi Form chinh sua san pham
+def get_item_form_edit(request, id):
+    catalog_list = catalog_model.objects.filter() #Lay danh sach cac danh muc de build ra select option
+    item = item_model.objects.get(item_id = id)
+    return render(request, 'itemFormEdit.html', {
+        'catalog_list' : catalog_list,
+        'item' : item,
+    })
+
+#Luu chinh sua san pham vào database
+def edit_item(request, id):
+    if request.method == 'POST':
+        #Lay cac du lieu
+        catalog_id = request.POST['catalog']
+        name = request.POST['fullName']
+        company = request.POST['company']
+        avatar = request.FILES['avatar']
+        price = request.POST['price']
+        
+        #Do catalog_id cua bang item lien ket vs bang catalog nen can phai truyen ca 1 doi tuong catalog
+        catalog = catalog_model.objects.get(catalog_id = catalog_id) #select * from catalog where catalog_id = catalog_id
+
+        #Tien hanh luu vao database
+        item = item_model.objects.get(item_id = id)
+        item.item_id = id
+        item.catalog_id = catalog
+        item.name = name
+        item.company = company
+        item.avatar = avatar
+        item.price = price
+        item.save()
+        #Dieu huong lai trang xem ds san pham
+        return redirect('/catalog/' + str(catalog_id)) #Do catalog_id la int nen de noi chuoi thi can chuyen ve str
+    else:
+        return render(request, 'error.html')
+
+def delete_item(request, id):
+    item = item_model.objects.get(item_id = id)
+    item.delete()
+    return redirect('/')

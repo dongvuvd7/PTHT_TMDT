@@ -26,13 +26,13 @@
             {% for item in item_list%}
             <tr>
                 <td>{{item.item_id}}</td>
-                <td style="font-weight: bold; text-align: center;">{{item.name}}</td>
+                <td>{{item.name}}</td>
                 <td>{{item.company}}</td>
                 <td><img src="/home/media/{{item.avatar}}" alt="" class="img" style="width: 80px; height: 80px;"></td>
                 <td>{{item.price}}</td>
                 <td>
-                    <button type="button" class="btn btn-info">Sửa</button>
-                    <button type="button" class="btn btn-warning">Xóa</button>
+                    <a href="/editItemForm/{{item.item_id}}"><button type="button" class="btn btn-info">Sửa</button></a>
+                    <a href="/deleteItem/{{item.item_id}}"><button type="button" class="btn btn-warning">Xóa</button></a>
                 </td>
             </tr>
             {% endfor %}
