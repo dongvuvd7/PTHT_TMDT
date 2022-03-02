@@ -10,9 +10,3 @@
 .text-bold td{
     font-weight: bold;
 }
-
-table tbody tr td{
-    display: flex;
-    align-items: center;
-    color: rebeccapurple;
-}
